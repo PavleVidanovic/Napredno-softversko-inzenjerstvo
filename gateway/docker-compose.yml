@@ -1,0 +1,23 @@
+version: '3'
+services:
+    gateway:
+        image: nsi-gateway:1.0.0-SNAPSHOT
+        pull_policy: never
+        ports:
+         - "8080:8080"
+        extra_hosts:
+        - "host.docker.internal:host-gateway"
+    public:
+        image: nsi-publicapi:1.0.0-SNAPSHOT
+        pull_policy: never
+        ports:
+         - "8081:8081"
+        extra_hosts:
+        - "host.docker.internal:host-gateway"
+    private:
+        image: nsi-privateapi:1.0.0-SNAPSHOT
+        pull_policy: never
+        ports:
+         - "8082:8082"
+        extra_hosts:
+        - "host.docker.internal:host-gateway"
