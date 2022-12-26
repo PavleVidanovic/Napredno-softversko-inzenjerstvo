@@ -26,7 +26,7 @@ public class PrivateApiController {
     public PrivatePaste pasteGet(@PathParam("id") UUID id) {
         PrivatePaste paste = par.findById(id);
         if (paste != null) {
-            if (paste.getUserID() == token.getSubject()) {
+            if (paste.getUserID().equals(token.getSubject())) {
                 return paste;
             } else {
                 throw new WebApplicationException(401);
@@ -43,7 +43,7 @@ public class PrivateApiController {
     public void removePaste(@PathParam("id") UUID id) {
         PrivatePaste paste = par.findById(id);
         if (paste != null) {
-            if (paste.getUserID() == token.getSubject()) {
+            if (paste.getUserID().equals(token.getSubject())) {
                 par.delete(paste);
             } else {
                 throw new WebApplicationException(401);
